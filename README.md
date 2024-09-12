@@ -1,79 +1,79 @@
-# spacemedia-dev-test
+# Spotify Artist Search Web Application
 
-# Technical Assignment: PHP Developer Role
-## Objective:
-Assess the developer's abilities in PHP, HTML, CSS, and working with RESTful APIs by creating a mini application that interacts with Spotify's API to search for artists by name.
+A mini web application that allows users to search for artists by name using the Spotify API, displaying relevant artist information such as name, genres, popularity, and image. Built using **PHP**, **HTML**, **CSS**, and **JavaScript**.
 
-## Assignment Overview:
-You are required to create a mini web application using PHP, HTML, CSS, and the Spotify API.
-The application should allow users to search for artists by name and display relevant information about the artists.
+## Features
 
-## Requirements:
-### Spotify API Integration:
+- **Spotify API Integration**: Search for artists by name.
+- **Artist Information Display**: Displays the artist's name, genres, popularity, and image (if available).
+- **Top Tracks Display**: Shows the top tracks for each artist.
+- **Pagination**: Paginates results if they exceed 10 artists per page.
+- **Responsive Design**: Styled with **Bootstrap** for mobile-friendly UI.
+- **Token Management**: Efficiently manages access tokens by using a token file for storage and refreshes tokens when needed.
 
-Register a new application on the Spotify Developer Dashboard to get your Client ID and Client Secret.
-Use the Spotify Web API to search for artists by name.
-### Documentation: [Spotify Web API](https://developer.spotify.com/documentation/)
+## Bonus Features
 
-## Backend (PHP):
-Create a PHP script to handle API requests to Spotify.
-The script should accept a search query (artist's name) and fetch data from the Spotify API.
-Parse and format the API response to extract relevant artist information (e.g., name, genres, popularity, image).
+- **Top Tracks**: Displays the top tracks for each artist.
+- **Pagination**: Results are paginated for large search sets.
+- **Token Refresh**: Automatically refreshes access tokens when expired, using the refresh token stored in a file.
 
-## Frontend (HTML, CSS, JavaScript):
-Create a simple, responsive HTML page with a search form.
-Style the page using CSS to make it visually appealing.
-Use JavaScript (optional) to handle the form submission and display the results dynamically without reloading the page.
-Functionality:
+## Folder Structure
+/assets/style.css -> CSS files for styling
+/assets/script.js -> JavaScript files for AJAX and other front-end logic 
+/assets/token.txt -> Stores access and refresh tokens for Spotify API
 
-The search form should allow users to input an artist's name and submit the search.
-Upon submission, display a list of matching artists with the following information:
-Artist's name
-Genres
-Popularity
-Image (if available)
-Include error handling for cases where no artists are found or an error occurs during the API request.
+/functions.php -> Contains API request functions and token management logic 
+/index.php -> Main entry point for the application 
+/spotify-search.php -> Handles requests for fetching artists lists
+/top-tracks.php -> Handles requests for fetching artist's top tracks
 
-Bonus Points:
-- Implement an authentication mechanism (username & password).
-- Implement pagination if the search results exceed a certain number.
-- Add a feature to display the top tracks of each artist.
-- Use a front-end framework/library (e.g., Vue.js, React) to enhance the user experience.
 
-## Deliverables:
+## Setup
 
-### Code Repository:
-Push your code to this GitHub repository or any other repo of your choice.
-Commit your changes frequently to show the progress of your work.
-Include/Update the README file with instructions on how to set up and run the application.
+### Prerequisites
 
-### Documentation:
-Briefly explain your approach to solving the task.
-Document any challenges you encountered and how you overcame them.
-If you implemented any bonus features, describe them.
+- PHP 7.4 or higher
+- Spotify Developer account to obtain **Client ID** and **Client Secret**
+- Composer (optional, if any additional PHP libraries are needed)
 
-### Evaluation Criteria:
-- **Functionality:**
-- **The application should meet the core requirements and function correctly.**
-- **Bonus features will be considered if implemented.**
+### Installation
+
+1. Clone the repository:
+    ```
+    git clone https://github.com/your-username/spotify-artist-search.git
+    ```
+
+2. Navigate to the project directory:
+    ```
+    cd spotify-artist-search
+    ```
+
+3. Set up your Spotify API credentials:
+    - Open the `functions.php` file and insert your **Spotify Client ID** and **Client Secret**.
+
+4. Ensure the `assets/token.txt` file exists and is writable by your PHP process.
+
+5. Run the application on your local server (e.g., using XAMPP or PHP's built-in server):
+    ```
+    php -S localhost:8000
+    ```
+
+6. Open your browser and navigate to `http://localhost:8000`.
+
+### Usage
+
+- Enter the artist's name in the search box and click **Search**.
+- The application will display the artist's name, genres, popularity, and image.
+- Click on an artist to view their top tracks.
+- Use pagination to navigate through large sets of results.
+
+## Token Management
+
+- The application retrieves a new access token from the Spotify API when required.
+- If the access token expires, it uses the refresh token stored in `assets/token.txt` to request a new one, improving performance and reducing unnecessary API calls.
+
+## Challenges and Solutions
+
+- **Token Expiration**: The application stores both the access and refresh tokens in a file. When the access token expires, the application reads the refresh token and generates a new access token, minimizing unnecessary API requests.
   
-### Code Quality:
-Code should be clean, well-organized, and follow best practices.
-Proper use of comments and documentation.
-
-### User Interface:
-
-The UI should be user-friendly and responsive.
-Effective use of CSS to create a visually appealing design.
-
-### API Integration:
-
-Correct and efficient use of the Spotify API.
-Proper error handling and data parsing.
-
-### Submission Deadline:
-The assignment should be completed and submitted within 7 days from the date of receipt.
-
-### How to Submit:
-Share the link to your GitHub repository, ensuring it is accessible.
-Provide any additional documentation or notes in the README file.
+- **Pagination**: Handling large result sets was challenging. The application uses client-side JavaScript to paginate results, ensuring a smooth and responsive user experience.
